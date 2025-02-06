@@ -43,6 +43,7 @@ class TodoList:
         #   todo: string representing a todo we want to delete
         # Returns:
         #   A string telling us that the todo has been done
+        #   Throws Exception if list is empty
         # Side-effects:
         #   deletes the todo from the self.todos
         pass # No code here yet
@@ -76,7 +77,7 @@ _Make a list of examples of how the class will behave in different situations._
 
 ``` python
 # EXAMPLE
-
+import pytest
 """
 Given we instantiate a new TodoList
 It returns a TodoList instance 
@@ -106,6 +107,37 @@ expected = ["buy coke"]
 
 assert todo_list.todos == ["buy coke"]
 assert actual == expected
+
+"""
+Given we call remove_todo and pass in a todo
+It will delete this todo from the self.todos
+"""
+todo_list = TodoList()
+todo_list.add_new_todo("buy coke")
+todo_list.add_new_todo("go for walk")
+
+actual_string = todo_list.remove_todo("buy coke")
+actual_list = todo_list.todos
+
+expected_string = "buy coke has been done"
+expected_list = ["go for walk"]
+
+assert actual_string == expected_string
+assert actual_list = expected_list
+
+"""
+Given we call remove_todo on an empty self.todos list
+It will throw an error
+"""
+todo_list = TodoList()
+
+with pytest.raises(Exception) as e:
+    todo_list.remove_todo("buy coke")
+
+error_message = str(e.value)
+
+assert error_message == "Can not operate empty list"
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
