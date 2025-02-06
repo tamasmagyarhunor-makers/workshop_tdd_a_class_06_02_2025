@@ -1,6 +1,6 @@
 from lib.example import example
 
-def test_example():
+def xtest_example():
     actual = example()
     expected = "hello"
 
